@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Canadaculator</title>
+    <a href="http://127.0.0.1:5000/home">Home</a>
+  </head>
+<body>
+    <div class="buttons">
+
+      <form method="POST">
+          <button type="button" onclick="append('atan')">atan</button>
+          <button type="button" onclick="append('acos')">acos</button>
+          <button type="button" onclick="append('asin')">asin</button>
+          <button type="button" onclick="append('√')">√</button>
+          <button type="submit" onclick="append(e)">e</button>
+          <button type="button" onclick="append('π')">π</button>
+          <button type="button" onclick="clearDisplay()">AC</button>
+          <button type="button" onclick="backspace()">⌫</button>
+          <input id="user_mathquestion"
+          name="math_input"
+          type="text"
+          placeholder="Enter math expression">
+
+          <button type="submit">Calculate</button>
+      </form>
+    <div class="blackbox">
+        <p>Squaring: x^2 would be x**2.</p>
+        <p>Inverse sin, cos, tan: asin(x), cos(x), tan(x).</p>
+        <p> Sin, Cos, Tan:  sin(x), cos(x), tan(x)</p>
+    </div>
+<p>Result: {{ result }}</p>
+
+
+
+<form method="POST">
+    <button type="submit">Graph</button>
+    <input type="text" id="equation" placeholder="Enter equation" name="user_graph">
+    <div>{{graph_result|safe}}</div>
+</form>
+<script>
+    const display = document.getElementById("user_mathquestion");
+  function append(value){
+    display.value += value;
+  }
+  function backspace() {
+     display.value = display.value.slice(0, -1);
+     }
+  function clearDisplay(){
+    display.value=""
+  }
+
+
+
+
+</script>
+</div>
+
+</body>
+</html>

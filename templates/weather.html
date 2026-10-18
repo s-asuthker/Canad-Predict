@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <meta charset="UTF-8">
+    <title>Weather today</title>
+    <form method="POST" action="/weather">
+        <input id="city" name="city" type="text" placeholder="Enter city">
+        <button type="submit">Get the Weather</button>
+    </form>
+    <a href="http://127.0.0.1:5000/home">Home</a>
+    <a href="http://127.0.0.1:5000">Stocks & AI</a>
+  <h3>Temperature: {{temp}}°C</h3>
+  <h3>Wind Speed: {{wind}}km/h</h3>
+  <img class="images" src="{{ url_for('static', filename='temp_pic/' + wimage) }}" alt="weather image">
+
+<body>
+
+</body>
+</html>

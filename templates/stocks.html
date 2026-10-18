@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<h1>Canad Predict v3.0.6</h1>
+<a href="http://127.0.0.1:5000/home">Home</a>
+<p> When asking AI something, please wait for it to respond</p>
+<form method="POST" action="/">
+    <input type="text" name="question" placeholder="Ask AI something...">
+    <input type="text" name="ai_ticker" placeholder="Ask for a stock price...">
+    <button type="submit">Submit</button>
+</form>
+{% if prediction_text %}
+    <h2>Answer:</h2>
+    <p>{{ prediction_text }}</p>
+{% endif %}
+
+{% if graph_img %}
+<h2 style="display: inline;"> The current price is </h2>
+<h3 style="display: inline;">${{close}}</h3>
+    <h2>Graph:</h2>
+    <img src="data:image/png;base64,{{ graph_img }}" alt="Stock Graph" class="images">
+{% endif %}
+{% for article in articles %}
+    <div class="news-card">
+        <h2>{{ article["fields"]["headline"] }}</h2>
+        {% if article["fields"]["thumbnail"] %}
+            <img src="{{ article.fields.thumbnail }}" width="300">
+        {% endif %}
+        <a href="{{ article.webUrl }}" target="_blank">Read more</a>
+    </div>
+    <hr>
+{% endfor %}
+</body>
+</html>

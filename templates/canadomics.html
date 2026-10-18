@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canadomics</title>
+    <a href="http://127.0.0.1:5000/home">Home</a>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <p>Please enter the country whose economic data you would like to get.</p>
+    <form method="POST" action="/canadomics">
+      <input type="text" name="country_question" placeholder="Ask for country.">
+      <button type="submit">Submit</button>
+  </form>
+    <p>The output includes gdp, unemployment, gdp_growth, population, etc.</p>
+    <p>It will be in the form of a chart.</p>
+    {% if chart %}
+      <img src="data:image/png;base64,{{ chart }}" alt="Population Chart" class="images">
+      <img src="data:image/png;base64,{{ chart2 }}" alt="GDP Chart" class="images">
+      <img src="data:image/png;base64,{{ chart3 }}" alt="Life Expect Chart" class="images">
+      <img src="data:image/png;base64,{{ chart4 }}" alt="Unemployment" class="images">
+      <img src="data:image/png;base64,{{ chart5 }}" alt="Investemt" class="images">
+      <img src="data:image/png;base64,{{ chart6 }}" alt="Inflation" class="images">
+    {% endif %}
+</body>
+</html>

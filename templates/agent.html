@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agntic AI</title>
+</head>
+<body>
+    <h1>Agntic AI Agent</h1>
+
+    <!-- Input box -->
+    <input id="q" type="text" placeholder="Ask AI something...">
+    <button onclick="ask()">Ask</button>
+
+    <!-- Output -->
+    <p id="out"></p>
+
+    <script>
+    async function ask() {
+        const q = document.getElementById("q").value;
+        // sends question to server
+
+        const r = await fetch("/agent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ q })
+        });
+        // r is .json object ('answer': flight or weather)
+
+        const data = await r.json();
+        // data is assigned r
+
+        document.getElementById("out").innerText = data.answer;
+        /* ABOVE basically outputs data.answer which is flight or weather and sends it tto a tag with the same id */
+    }
+    </script>
+</body>
+</html>

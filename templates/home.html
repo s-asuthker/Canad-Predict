@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1> Welcome to Canad Predict v3.0.6</h1>
+  <a href="http://127.0.0.1:5000">Stocks & AI</a>
+  <a href="/weather">Weather</a>
+  <a href="/agent">Agentic AI</a>
+  <a href="/canadculator">Canadculator</a>
+  <a href="/canad_sengine">Canad Sengine</a>
+  <a href="/canadomics">Canadomics</a>
+  <div>
+    <h4> Fun Facts of the Day</h4>
+    <p>{{selected_fact1}}</p>
+    <p>{{selected_fact2}}</p>
+    <p>{{selected_fact3}}</p>
+  </div>
+<div class="flex_contain">
+  <div class="blackbox">
+  <h3>Current Exchange Rates</h3>
+  <p> USD>>EUR: </p><h3>{{rate}}</h3>
+  <p>EUR>>USD: </p><h3>{{rate2}}</h3>
+    <p> USD>>CAD: </p><h3>{{rate3}}</h3>
+    </div>
+    <div class="blackbox">
+        <h3>.          .           .</h3>
+        <p>USD>>JPY: </p><h3>{{rate4}}</h3>
+        <p> USD>>GBP: </p><h3>{{rate5}}</h3>
+        <p>GBP>USD: </p><h3>{{rate6}}</h3>
+    </div>
+    </div>
+<div class="flex_contain">
+    <div class="blackbox">
+        <p>Gold Price:</p><h3>{{wgold_price}}</h3>
+        <p>Oil Price:</p><h3>{{woil_price}}</h3>
+        <p>USD>>INR: </p><h3>{{rate7}}</h3>
+    </div>
+</div>
+  <h4>Image of the Day</h4>
+  <div class="square_box">
+      <img class="images" src="/static/images/{{ image }}" alt="glorious cities skylines">
+      <img class="images" src="/static/images/{{ image2 }}" alt="glorious cities skylines">
+      <img class="images" src="/static/images/{{ image3 }}" alt="glorious cities skylines">
+      <img class="images" src="/static/images/{{ image4 }}" alt="glorious cities skylines">
+  </div>
+
+
+  {% for article in articles %}
+      <div class="news-card">
+          <h2>{{ article["fields"]["headline"] }}</h2>
+          {% if article["fields"]["thumbnail"] %}
+              <img src="{{ article.fields.thumbnail }}" width="300">
+          {% endif %}
+          <a href="{{ article.webUrl }}" target="_blank">Read more</a>
+      </div>
+      <hr>
+  {% endfor %}
+</body>
+</html>

@@ -17,3 +17,4 @@ sympy
 torch
 wikipedia
 yfinance
+gunicorn
